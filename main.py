@@ -19,10 +19,7 @@ while score < 34:
     answer_province = screen.textinput(title=f"{score}/{total_province} State Correct", 
                                             prompt="What's Another province's name? ").title()
     if answer_province == "Exit":
-        missing_province = []
-        for province in province_list:
-            if province not in guessed_province:
-                missing_province.append(province)
+        missing_province = [province for province in province_list if province not in guessed_province]
         df = pd.DataFrame(missing_province)
         df.to_csv("province_to_learn.csv")
         break
